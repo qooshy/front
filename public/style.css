@@ -1,0 +1,252 @@
+body {
+    font-family: 'Lora', serif;
+    background-color: #121212; /* Fond sombre */
+    color: #e0e0e0; /* Texte clair */
+    margin: 0;
+    padding: 0;
+}
+
+#show-add-movie-form-button {
+    padding: 12px 25px; /* Espacement à l'intérieur du bouton */
+    font-size: 1.2em; /* Taille de la police */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Coins arrondis */
+    background-color: #007bff; /* Couleur de fond bleu */
+    color: white; /* Couleur du texte */
+    cursor: pointer; /* Curseur en forme de main au survol */
+    transition: background-color 0.3s, transform 0.2s; /* Transition pour les effets */
+    margin-top: 20px; /* Espacement au-dessus du bouton */
+}
+
+#show-add-movie-form-button:hover {
+    background-color: #0056b3; /* Couleur plus foncée au survol */
+}
+
+#show-add-movie-form-button:focus {
+    outline: none; /* Pas de contour */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Effet de focus */
+}
+
+#show-add-movie-form-button:active {
+    transform: scale(0.98); /* Effet de pression */
+}
+
+
+#all-films-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 20px 0;
+    background-color: #2c2c2c; /* Fond légèrement plus clair */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Assure qu'il reste en haut */
+}
+
+#show-all {
+    padding: 15px 30px;
+    font-size: 1.5em;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#show-all:hover {
+    background-color: #0056b3;
+}
+
+#show-all:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* effet focus */
+}
+
+body {
+    padding-top: 100px; /* Ajuste selon la hauteur réelle de la nav */
+}
+
+#filter-options {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px 0;
+    padding-top: 70px; /* Décalage pour éviter que le bouton ne soit recouvert */
+}
+
+#filter-options button {
+    margin: 10px;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #444; /* Fond gris foncé */
+    color: #fff;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#filter-options button:hover {
+    background-color: #555; /* Légère modification de couleur */
+    transform: scale(1.05); /* Un petit effet de zoom */
+}
+
+#filter-options button:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Effet de focus */
+}
+
+#addFilmForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px; /* Espace en bas du formulaire */
+}
+
+#addFilmForm input {
+    padding: 10px;
+    margin: 10px 0; 
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #2c2c2c;
+    color: white;
+    width: 80%; 
+    max-width: 400px; 
+}
+
+
+#addFilmForm button {
+    padding: 12px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 10px; 
+}
+
+#addFilmForm button:hover {
+    background-color: #218838; 
+}
+
+#delete-film-container {
+    margin-top: 30px; 
+}
+
+#film-select {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #2c2c2c;
+    color: white;
+    cursor: pointer;
+}
+
+#delete-film {
+    padding: 12px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: #d9534f;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#delete-film:hover {
+    background-color: #c9302c;
+    transform: scale(1.05);
+}
+
+#delete-film:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(217, 83, 79, 0.5);
+}
+
+#delete-film-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: -10px; 
+}
+
+#filter-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+#range-container {
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+#range {
+    width: 80%; 
+    max-width: 400px;
+    margin: 10px 0;
+}
+
+#note-value {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+#movies-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.movie {
+    background-color: #1f1f1f;
+    border-radius: 8px;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.movie img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.movie h2 {
+    font-size: 1.3em;
+    margin: 10px 0;
+    color: #f5f5f5;
+}
+
+.movie p {
+    color: #ccc;
+    font-size: 0.9em;
+}
+
+#filter-options button:active {
+    transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+    #range {
+        width: 100%;
+    }
+
+    #movies-list {
+        flex-direction: column;
+        align-items: center;
+    }
+}
