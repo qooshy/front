@@ -1,7 +1,7 @@
 $(document).ready(function() {
     let currentFilter = 'all';  
     let currentThreshold = 0.0; 
-    let moviesData = []; // Stocker les films chargés
+    let moviesData = []; 
 
     function loadMovies() {
         $.ajax({
@@ -63,7 +63,7 @@ $(document).ready(function() {
     }
 
     $('#show-all').click(function() {
-        location.reload(); // Recharge la page
+        location.reload(); 
     });
 
     $('#show-classics').click(function() {
@@ -96,28 +96,46 @@ $('#show-add-movie-form-button').click(function() {
 });
 
 
+$(document).ready(function() {
     $('#addFilmForm').on('submit', function(event) {
         event.preventDefault();
-        const newMovie = {
-            nom: $('#titre').val(),
-            genre: $('#genre').val(),
-            dateDeSortie: $('#annee').val(),
-            note: $('#note').val(),
-            realisateur: $('#realisateur').val(),
-            origine: $('#origine').val(),
-            compagnie: $('#compagnie').val(),
-            lienImage: $('#imagePath').val(),
-            description: $('#description').val(),
-            notePublic: $('#notePublic').val()
-        };
-        moviesData.push(newMovie);
-        updateMovies();
-        updateFilmSelect();
-        this.reset(); 
 
-        alert('Film ajouté avec succès !');
-        $('#addFilmForm').hide(); 
+        const titre = $('#titre').val();
+        const genre = $('#genre').val();
+        const annee = $('#annee').val();
+        const note = $('#note').val();
+        const realisateur = $('#realisateur').val();
+        const origine = $('#origine').val();
+        const compagnie = $('#compagnie').val();
+        const description = $('#description').val();
+
+        const formData = new FormData();
+        formData.append('titre', titre);
+        formData.append('genre', genre);
+        formData.append('annee', annee);
+        formData.append('note', note);
+        formData.append('realisateur', realisateur);
+        formData.append('origine', origine);
+        formData.append('compagnie', compagnie);
+        formData.append('description', description);
+
+        $.ajax({
+            url: '/ajouter-film',
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                alert(response.message);
+                $('#addFilmForm')[0].reset();
+            },
+            error: function(err) {
+                alert('Erreur lors de l\'ajout du film');
+            }
+        });
     });
+});
+
 
     loadMovies();
 });

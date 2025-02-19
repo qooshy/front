@@ -10,6 +10,7 @@
 <body>
 
     <button type="button" id="show-add-movie-form-button">Ajouter un film</button>
+    
     <form id="addFilmForm" style="display: none;">
         <input type="text" id="titre" placeholder="Titre" required>
         <input type="text" id="genre" placeholder="Genre" required>
@@ -19,10 +20,11 @@
         <input type="text" id="origine" placeholder="Origine" required>
         <input type="text" id="compagnie" placeholder="Compagnie" required>
         <textarea id="description" placeholder="Description" required></textarea>
-        <input type="file" id="image" accept="image/*" required>
         <input type="hidden" id="imagePath">
         <button type="submit">Ajouter</button>
     </form>
+    
+
     
 
     <div id="delete-film-container">
