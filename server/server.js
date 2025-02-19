@@ -20,7 +20,64 @@ db.run(`CREATE TABLE IF NOT EXISTS films (
     genre TEXT,
     annee INTEGER,
     note REAL
-)`);
+)`, (err) => {
+    if (err) {
+        console.error("Erreur lors de la création de la table 'films':", err);
+    } else {
+        // Vérifie si la table est vide
+        db.get("SELECT COUNT(*) as count FROM films", (err, row) => {
+            if (err) {
+                console.error("Erreur lors du comptage des enregistrements:", err);
+                return;
+            }
+
+            // S'il n'y a aucun film, on importe depuis le JSON
+            if (row.count === 0) {
+                console.log("Table 'films' vide. Import des données depuis films.json...");
+
+                const jsonPath = path.join(__dirname, '../public', 'films.json');
+                fs.readFile(jsonPath, 'utf8', (err, data) => {
+                    if (err) {
+                        console.error("Erreur lors de la lecture du fichier JSON:", err);
+                        return;
+                    }
+
+                    let films;
+                    try {
+                        films = JSON.parse(data);
+                    } catch (parseErr) {
+                        console.error("Erreur de parsing du JSON:", parseErr);
+                        return;
+                    }
+
+                    films.forEach(film => {
+                        const insertQuery = `
+                            INSERT INTO films (titre, genre, annee, note)
+                            VALUES (?, ?, ?, ?)
+                        `;
+
+                        db.run(
+                            insertQuery,
+                            [
+                                film.nom || 'Inconnu',
+                                film.genre || 'Inconnu',
+                                film.dateDeSortie || 0,
+                                film.note || 0
+                            ],
+                            function(err) {
+                                if (err) {
+                                    console.error("Erreur lors de l'ajout du film:", err);
+                                } else {
+                                    console.log(`Film inséré: ${film.nom}`);
+                                }
+                            }
+                        );
+                    });
+                });
+            }
+        });
+    }
+});
 
 
 app.use(cors());
@@ -77,6 +134,7 @@ app.get('/films', (req, res) => {
             res.status(500).json({ error: err.message });
             return;
         }
+        console.log(rows); 
         res.json(rows);
     });
 });

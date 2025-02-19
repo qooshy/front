@@ -5,7 +5,7 @@ $(document).ready(function() {
 
     function loadMovies() {
         $.ajax({
-            url: 'http://localhost:3000/public/films.json',
+            url: 'http://localhost:3000/films', 
             type: 'GET',
             dataType: 'json',
             success: function(data) {
@@ -40,10 +40,10 @@ $(document).ready(function() {
                 return;
             }
 
-            $(instance).find('.nom').text(movie.nom || 'N/A');
+            $(instance).find('.nom').text(movie.titre || 'N/A');
             $(instance).find('.image').attr('src', movie.lienImage || '/img/default.jpg');
             $(instance).find('.origine').text('Origine: ' + (movie.origine || 'N/A'));
-            $(instance).find('.annee').text('Année de sortie: ' + (movie.dateDeSortie || 'N/A'));
+            $(instance).find('.annee').text('Année de sortie: ' + (movie.annee || 'N/A')); 
             $(instance).find('.realisateur').text('Réalisateur: ' + (movie.realisateur || 'N/A'));
             $(instance).find('.notePublic').text('Note du public: ' + (movie.notePublic || 'N/A'));
             $(instance).find('.note').text('Note de la critique: ' + (movie.note || 'N/A'));
@@ -58,7 +58,7 @@ $(document).ready(function() {
         const select = $('#film-select');
         select.empty();
         $.each(moviesData, function(i, movie) {
-            select.append(`<option value="${movie.nom}">${movie.nom}</option>`);
+            select.append(`<option value="${movie.titre}">${movie.titre}</option>`); // Changement ici
         });
     }
 
@@ -86,17 +86,15 @@ $(document).ready(function() {
         const filmToDelete = $('#film-select').val();
         if (!filmToDelete) return;
 
-        moviesData = moviesData.filter(movie => movie.nom !== filmToDelete);
+        moviesData = moviesData.filter(movie => movie.titre !== filmToDelete); 
         updateMovies();
         updateFilmSelect();
     });
 
-$('#show-add-movie-form-button').click(function() {
-    $('#addFilmForm').toggle(); 
-});
+    $('#show-add-movie-form-button').click(function() {
+        $('#addFilmForm').toggle(); 
+    });
 
-
-$(document).ready(function() {
     $('#addFilmForm').on('submit', function(event) {
         event.preventDefault();
 
@@ -128,14 +126,13 @@ $(document).ready(function() {
             success: function(response) {
                 alert(response.message);
                 $('#addFilmForm')[0].reset();
+                loadMovies(); 
             },
             error: function(err) {
                 alert('Erreur lors de l\'ajout du film');
             }
         });
     });
-});
-
 
     loadMovies();
 });
